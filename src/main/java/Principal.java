@@ -47,6 +47,10 @@ public class Principal {
                         return;
                     }
                 }
+                case 0 -> {
+                    menu.exibirTitulo("Até mais :)");
+                }
+
                 default -> {System.out.println("Opção inválida, tente novamente.");}
             }
         } while(opcaoDigitada != 0);

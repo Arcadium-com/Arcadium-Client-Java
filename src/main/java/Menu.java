@@ -9,12 +9,10 @@ public class Menu {
 
     public void exibirLogo(){
         System.out.println("""     
-                 
-                ▄▀█ █▀█ █▀▀ ▄▀█ █▀▄ █ █░█ █▀▄▀█
-                █▀█ █▀▄ █▄▄ █▀█ █▄▀ █ █▄█ █░▀░█
-                
-                Seja muito bem-vindo(a)!
-                """);
+                              
+                █▀▀ █▀█ █▀█ █▀▄ █ █▀▀   █▄▀ █ █▀█ █▀ █▄▀ █ █▀▀
+                █▀░ █▄█ █▄█ █▄▀ █ ██▄   █░█ █ █▄█ ▄█ █░█ █ ██▄
+            """);
     }
 
     public void exibirOpcoes(){
@@ -35,7 +33,7 @@ public class Menu {
 
     public boolean validarEmail(String email){
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            if(listaUsuarios.get(i).email.equals(email)){
+            if(listaUsuarios.get(i).getEmail().equals(email)){
                 return true;
             }
         }
@@ -45,7 +43,7 @@ public class Menu {
 
     public boolean validarSenha(String senha){
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (listaUsuarios.get(i).senha.equals(senha)){
+            if (listaUsuarios.get(i).getSenha().equals(senha)){
                 return true;
             }
         }
@@ -53,21 +51,18 @@ public class Menu {
         return false;
     }
 
-
     public void cadastrarUsuario(String nome, String empresa, String tipoUsuario, String email, String senha){
-        Boolean emailExiste = validarEmail(email);
-
-        if(emailExiste){
-            System.out.println("Email já cadastrado, tente com outro.");
+        if(nome.isEmpty() || empresa.isEmpty() || tipoUsuario.isEmpty() || email.isEmpty() || senha.isEmpty()){
+            System.out.println("\nPreencha todos os campos solicitados.");
         } else {
-            Usuario usuario = new Usuario();
-            usuario.nomeCompleto = nome;
-            usuario.nomeEmpresa = empresa;
-            usuario.tipoUsuario = tipoUsuario;
-            usuario.email = email;
-            usuario.senha = senha;
-            listaUsuarios.add(usuario);
-            System.out.println("Cadastro realizado com sucesso!");
+            Boolean emailExiste = validarEmail(email);
+            if(emailExiste) {
+                System.out.println("Email já cadastrado, tente com outro.");
+            } else {
+                Usuario usuario = new Usuario(nome, empresa, tipoUsuario, email, senha);
+                listaUsuarios.add(usuario);
+                System.out.println("Cadastro realizado com sucesso!");
+            }
         }
     }
 
@@ -75,9 +70,13 @@ public class Menu {
         Boolean emailExiste = validarEmail(email);
         Boolean senhaExiste = validarSenha(senha);
 
-        if(emailExiste && senhaExiste){
-            exibirTitulo(       "Arcadium Client");
-            System.out.println("Olá, bem-vindo(a) de volta");
+        if(email.isEmpty() || senha.isEmpty()){
+            System.out.println("\nPreencha todos os campos solicitados.");
+            return false;
+        }
+        else if(emailExiste && senhaExiste) {
+            exibirTitulo("Foodie Kioskie");
+            System.out.println("Olá, bem-vindo(a) de volta.");
             return true;
         } else {
             System.out.println("Email e/ou senha incorretos.");
@@ -87,6 +86,7 @@ public class Menu {
 
     public void exibirMenu(){
         exibirLogo();
+        System.out.println("Seja muito bem-vindo(a)!\n");
         exibirOpcoes();
     }
 
