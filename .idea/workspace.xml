@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="615280e7-a772-4941-86f2-ee0419d2a3ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/src/main/java/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/src/main/java/Principal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arcadium-client/src/main/java/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +39,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/noisyboy/workspace/foodie-kioskie",
+    "last_opened_file_path": "/home/noisyboy/Downloads/raquel/sptech/2sem/PI/sprint2/foodie-kioskie",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",

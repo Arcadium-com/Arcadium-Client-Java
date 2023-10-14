@@ -1,11 +1,23 @@
+import database.Conexao;
+import models.SistemaOperacional;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
         Scanner leitorInteiros = new Scanner(System.in);
-        Scanner leitorComLinha = new Scanner(System.in);
         Menu menu = new Menu();
+        Scanner leitorComLinha = new Scanner(System.in);
         Integer opcaoDigitada;
+
+        Conexao conexao = new Conexao();
+        JdbcTemplate con = conexao.getConexaoDoBanco();
+        con.update("INSERT INTO sistemaOperacional(distribuicao, versionamento) VALUES(?, ?)", "Linux", "Arch Linux");
+        List<SistemaOperacional> sistemasOperacionais = con.query("SELECT * FROM sistemaOperacional", new BeanPropertyRowMapper<>(SistemaOperacional.class));
+        System.out.println(sistemasOperacionais);
 
         do{
             menu.exibirMenu();
@@ -14,38 +26,9 @@ public class Principal {
             switch (opcaoDigitada){
                 case 1 -> {
                     menu.exibirTitulo("Cadastre-se");
-
-                    System.out.print("Digite seu nome completo: ");
-                    String nomeCompleto = leitorComLinha.nextLine();
-
-                    System.out.print("Digite o nome da empresa que você trabalha: ");
-                    String nomeEmpresa = leitorComLinha.nextLine();
-
-                    System.out.print("Digite se trabalha no suporte [S] [N]: ");
-                    // Transformando o que o usuário digitou em caixa alta
-                    String tipoDigitadoCaixaAlta = leitorComLinha.nextLine().toUpperCase();
-                    // Se o que usuário digitou é "S" retorna "Suporte", senão "Usuário"
-                    String tipoUsuario = tipoDigitadoCaixaAlta.equals("S") ? "Suporte" : "Usuário";
-
-                    System.out.print("Digite seu email: ");
-                    String email = leitorComLinha.nextLine();
-
-                    System.out.print("Digite sua senha: ");
-                    String senha = leitorComLinha.nextLine();
-
-                    menu.cadastrarUsuario(nomeCompleto, nomeEmpresa, tipoUsuario, email, senha);
                 }
                 case 2 -> {
                     menu.exibirTitulo("Entrar");
-                    System.out.print("Digite seu email: ");
-                    String email = leitorComLinha.nextLine();
-                    System.out.print("Digite sua senha: ");
-                    String senha = leitorComLinha.nextLine();
-                    Boolean entrou = menu.entrar(email, senha);
-
-                    if(entrou){
-                        return;
-                    }
                 }
                 case 0 -> {
                     menu.exibirTitulo("Até mais :)");
