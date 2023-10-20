@@ -78,7 +78,7 @@ public class Principal {
                                     System.out.println("Opção inválida. Tente novamente.");
                                 }
                             }
-                        } while(opcaoDigitada != 0 );
+                        } while(opcaoDigitada != 0);
                     }
                 }
                 case 0 -> {
