@@ -1,5 +1,9 @@
 package models;
+import org.springframework.cglib.core.Local;
 import oshi.hardware.UsbDevice;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,15 +14,18 @@ public class Totem {
     private Integer fkStatus;
     private Integer fkEmpresa;
     private Integer fkSistemaOperacional;
-    private Date dtInstalacao;
+    private LocalDate dtInstalacao;
     private Integer RAMTotal;
     private Double CPUTotal;
     private Integer discoTotal;
+    private String enderecoMAC;
     private Integer USB;
     private List<UsbDevice> listaUsbs;
     private List<Dados> dadosTotem;
 
-    public Totem(Integer fkIndicadores, Integer fkStatus, Integer fkEmpresa, Integer fkSistemaOperacional, Date dtInstalacao, Integer RAMTotal, Double CPUTotal, Integer discoTotal, Integer usb) {
+    public Totem(){}
+
+    public Totem(Integer id, Integer fkIndicadores, Integer fkStatus, Integer fkEmpresa, Integer fkSistemaOperacional, LocalDate dtInstalacao, Integer RAMTotal, Double CPUTotal, Integer discoTotal, String enderecoMAC, Integer usb) {
         this.fkIndicadores = fkIndicadores;
         this.fkStatus = fkStatus;
         this.fkEmpresa = fkEmpresa;
@@ -27,13 +34,25 @@ public class Totem {
         this.RAMTotal = RAMTotal;
         this.CPUTotal = CPUTotal;
         this.discoTotal = discoTotal;
+        this.enderecoMAC = enderecoMAC;
         this.USB = usb;
         this.listaUsbs = new ArrayList<UsbDevice>();
         this.dadosTotem = new ArrayList<>();
     }
 
+    public void adicionarUsb(UsbDevice u){
+        this.listaUsbs.add(u);
+    }
+
+    public void adicionarDados(Dados d){
+        this.dadosTotem.add(d);
+    }
+
     public Integer getId() {
         return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getFkIndicadores() {
@@ -68,11 +87,11 @@ public class Totem {
         this.fkSistemaOperacional = fkSistemaOperacional;
     }
 
-    public Date getDtInstalacao() {
+    public LocalDate getDtInstalacao() {
         return dtInstalacao;
     }
 
-    public void setDtInstalacao(Date dtInstalacao) {
+    public void setDtInstalacao(LocalDate dtInstalacao) {
         this.dtInstalacao = dtInstalacao;
     }
 
@@ -100,6 +119,14 @@ public class Totem {
         this.discoTotal = discoTotal;
     }
 
+    public String getEnderecoMAC() {
+        return enderecoMAC;
+    }
+
+    public void setEnderecoMAC(String enderecoMAC) {
+        this.enderecoMAC = enderecoMAC;
+    }
+
     public List<UsbDevice> getListaUsbs() {
         return listaUsbs;
     }
@@ -110,29 +137,26 @@ public class Totem {
 
     @Override
     public String toString(){
+        DateTimeFormatter formatadorDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return """
-            Totem: {
-               "id": %d,
-               "fkIndicadores" : %d,
-               "fkStatus" : %d,
-               "fkEmpresa" : %d,
-               "fkSistemaOperacional" : %d,
-               "dtInstalação" : %s,
-               "RAMTotal" : %d,
-               "CPUTotal" : %.2f,
-               "discoTotal" : %d,
-               "USB" : %d,
-            }    
+           Id do Totem: %d
+           Data de Instalação do FoodieKioskie: %s
+           Total da Memória RAM: %d
+           Total de Núcleos CPU: %.0f
+           Total do Disco (HD/SSD): %d
+           Endereço MAC: %s
         """.formatted(
                 this.id,
-                this.fkIndicadores,
-                this.fkStatus,
-                this.fkEmpresa,
-                this.fkSistemaOperacional,
-                this.dtInstalacao,
+                // this.fkIndicadores,
+                // this.fkStatus,
+                //this.fkEmpresa,
+                //this.fkSistemaOperacional,
+                formatadorDataHora.format(this.dtInstalacao),
                 this.RAMTotal,
                 this.CPUTotal,
-                this.USB
+                this.discoTotal,
+                this.enderecoMAC
+                //this.USB
         );
     }
 }

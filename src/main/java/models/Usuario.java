@@ -6,7 +6,10 @@ public class Usuario {
     private String senha;
     private Integer fkPermissao;
     private Integer fkEmpresa;
-    public Usuario(String email, String senha, Integer fkPermissao, Integer fkEmpresa){
+
+    public Usuario(){}
+    public Usuario(Integer id, String email, String senha, Integer fkPermissao, Integer fkEmpresa){
+        this.id = id;
         this.email = email;
         this.senha = senha;
         this.fkPermissao = fkPermissao;

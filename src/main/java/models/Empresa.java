@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Empresa {
     private Integer id;
     private String nomeResponsavel;
@@ -12,6 +15,10 @@ public class Empresa {
     private String bairro;
     private String cidade;
     private Integer fkEstado;
+    private List<Totem> totens;
+    private List<Usuario> usuarios;
+
+    public Empresa(){}
 
     public Empresa(String nomeResponsavel, String nomeFantasia, String cnpj, String tel, String tipoLogradouro, String logradouro, String numero, String bairro, String cidade, Integer fkEstado) {
         this.nomeResponsavel = nomeResponsavel;
@@ -24,6 +31,15 @@ public class Empresa {
         this.bairro = bairro;
         this.cidade = cidade;
         this.fkEstado = fkEstado;
+        this.totens = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
+    }
+
+    public void adicionarTotem(Totem t){
+        this.totens.add(t);
+    }
+    public void adicionarUsuario(Usuario u){
+        this.usuarios.add(u);
     }
 
     public Integer getId() {
@@ -108,5 +124,12 @@ public class Empresa {
 
     public void setFkEstado(Integer fkEstado) {
         this.fkEstado = fkEstado;
+    }
+
+    public List<Totem> getTotens(){
+        return this.totens;
+    }
+    public List<Usuario> getUsuario(){
+        return this.usuarios;
     }
 }

@@ -10,7 +10,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="615280e7-a772-4941-86f2-ee0419d2a3ea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/MenuTelaDados.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DadosDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/SistemaOperacionalDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/TotemDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/UsuarioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/arcadium_client_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/arcadium_client_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DadosController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/EmpresaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/EmpresaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/EstadoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/IndicadoresController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PermissaoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/SistemaOperacionalController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/StatusController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TotemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conexao/Conexao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Dados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Dados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Estado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Indicadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Indicadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Log.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Permissao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/SistemaOperacional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/SistemaOperacional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Totem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Totem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Principal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Principal.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,19 +65,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/noisyboy/Downloads/raquel/sptech/2sem/PI/sprint2/foodie-kioskie",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/noisyboy/Downloads/raquel/sptech/2sem/PI/sprint2/foodie-kioskie&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Principal" />

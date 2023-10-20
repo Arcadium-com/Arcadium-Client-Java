@@ -10,7 +10,10 @@ public class Indicadores {
     private Double limiteDisco;
     private List<Totem> listaTotens;
 
-    public Indicadores(Double limiteCPU, Double limiteRAM, Double limiteDisco) {
+    public Indicadores(){}
+
+    public Indicadores(Integer id, Double limiteCPU, Double limiteRAM, Double limiteDisco) {
+        this.id = id;
         this.limiteCPU = limiteCPU;
         this.limiteRAM = limiteRAM;
         this.limiteDisco = limiteDisco;

@@ -1,10 +1,11 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Dados {
-    private Date dtHora;
+    private LocalDateTime dtHora;
     private Double valorDisco;
     private Double valorMemoriaRAM;
     private Double valorCPU;
@@ -12,7 +13,9 @@ public class Dados {
     private Integer fkTotem;
     private Integer fkLog;
 
-    public Dados(Date dtHora, Double valorDisco, Double valorMemoriaRAM, Double valorCPU, Integer USB, Integer fkTotem, Integer fkLog) {
+    public Dados(){}
+
+    public Dados(LocalDateTime dtHora, Double valorDisco, Double valorMemoriaRAM, Double valorCPU, Integer USB, Integer fkTotem, Integer fkLog) {
         this.dtHora = dtHora;
         this.valorDisco = valorDisco;
         this.valorMemoriaRAM = valorMemoriaRAM;
@@ -22,11 +25,11 @@ public class Dados {
         this.fkLog = fkLog;
     }
 
-    public Date getDtHora() {
+    public LocalDateTime getDtHora() {
         return dtHora;
     }
 
-    public void setDt_hora(Date dt_hora) {
+    public void setDt_hora(LocalDateTime dt_hora) {
         this.dtHora = dt_hora;
     }
 
@@ -76,5 +79,27 @@ public class Dados {
 
     public void setFkLog(Integer fkLog) {
         this.fkLog = fkLog;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatadorDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
+        return String.format("""
+            Data do Registro: %s
+            Uso do Disco: %.2f%%
+            Uso da Memória RAM: %.2f%%
+            Uso da CPU: %.2f%%
+            ID do Totem: %d
+            """,
+            formatadorDataHora.format(this.dtHora),
+            this.valorDisco,
+            this.valorMemoriaRAM,
+            this.valorCPU,
+            this.fkTotem
+        );
+
+        // Quantidade de USBs Conectados: %d
+        // Descrição do Log: %s
+
     }
 }

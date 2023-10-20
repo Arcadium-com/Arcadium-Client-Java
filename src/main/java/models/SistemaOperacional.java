@@ -1,15 +1,25 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SistemaOperacional {
     private Integer id;
     private String distribuicao;
     private String versionamento;
+    private List<Totem> totens;
 
     public SistemaOperacional(){}
+
     public SistemaOperacional(Integer id, String distribuicao, String versionamento) {
         this.id = id;
         this.distribuicao = distribuicao;
         this.versionamento = versionamento;
+        this.totens = new ArrayList<>();
+    }
+
+    public void adicionarTotem(Totem t){
+        this.totens.add(t);
     }
 
     public Integer getId() {
@@ -36,14 +46,8 @@ public class SistemaOperacional {
         this.versionamento = versionamento;
     }
 
-    @Override
-    public String toString(){
-        return """
-            Sistema Operacional: {
-               "id": %d,
-               "distribuição" : %s,
-               "versionamento": %s
-            }    
-        """.formatted(this.id, this.distribuicao, this.versionamento);
+    public List<Totem> getTotens() {
+        return totens;
     }
+
 }

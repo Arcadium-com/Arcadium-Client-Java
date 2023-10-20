@@ -4,12 +4,18 @@ public class Status {
     private Integer id;
     private String status;
 
-    public Status(String status) {
+    public Status(){}
+
+    public Status(Integer id, String status) {
         this.status = status;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStatus() {
