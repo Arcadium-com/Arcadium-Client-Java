@@ -10,6 +10,7 @@ import models.Totem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 //import java.util.ArrayList;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class TotemDao {
@@ -34,9 +35,12 @@ public class TotemDao {
 
         if(totemComEnderecoMAC == null){
             Disco disco = looca.getGrupoDeDiscos().getDiscos().get(0);
-            Integer totalDisco = Integer.parseInt(disco.getTamanho().toString().substring(0, 3));
             Memoria memoria = looca.getMemoria();
-            Integer totalRAM = Integer.parseInt(memoria.getTotal().toString().substring(0, 2));
+
+            // Formatação do valor do disco e memória. Dividindo o valor por 1000000000 e arrendondando.
+            Integer totalDisco = Math.round(disco.getTamanho() / 1000000000);
+            Integer totalRAM = Math.round(memoria.getTotal() / 1000000000);
+
             Double totalCPU = looca.getProcessador().getNumeroCpusLogicas().doubleValue();
 
             mysql.update("""

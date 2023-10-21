@@ -12,7 +12,7 @@ public class Conexao {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/Arcadium");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("#Arcadium");
 
         conexaoDoBanco = new JdbcTemplate(dataSource);
     }
