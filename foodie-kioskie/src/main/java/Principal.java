@@ -43,7 +43,7 @@ public class Principal {
                                 dadosDao.inserirDadosNoBanco(totemCadastrado.getId());
 
                             }
-                        }, 10000, 5000);
+                        }, 0, 10000);
 
                         MenuTelaDados menuTelaDados = new MenuTelaDados();
 
@@ -73,6 +73,7 @@ public class Principal {
                                 }
                                 case 0 -> {
                                     System.out.println("Até mais :)");
+                                    System.exit(0);
                                 }
                                 default -> {
                                     System.out.println("Opção inválida. Tente novamente.");

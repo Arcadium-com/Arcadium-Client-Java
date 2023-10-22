@@ -24,6 +24,10 @@ public class Indicadores {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Double getLimiteCPU() {
         return limiteCPU;
     }

@@ -15,7 +15,7 @@ public class DadosDao {
     JdbcTemplate mysql = conexao.getConexaoDoBanco();
 
     public void inserirDadosNoBanco(Integer fkTotem){
-        Double usoDoDisco = looca.getGrupoDeDiscos().getDiscos().get(0).getEscritas().doubleValue() / 1000;
+        Double usoDoDisco = looca.getGrupoDeDiscos().getDiscos().get(0).getEscritas().doubleValue() / 1000000;
         Integer discoTotal = Integer.parseInt(looca.getGrupoDeDiscos().getDiscos().get(0).getTamanho().toString().substring(0, 3));
         Double valorDisco = (usoDoDisco / discoTotal) * 100;
         Double valorRAM =  (looca.getMemoria().getEmUso().doubleValue() / looca.getMemoria().getTotal().doubleValue()) * 100;
