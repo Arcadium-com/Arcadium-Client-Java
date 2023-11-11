@@ -19,7 +19,6 @@ public class Usuario {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -63,15 +62,19 @@ public class Usuario {
         for (int i = 0; i < this.senha.length(); i++) {
             senha += "*";
         }
+
         return """
-            Permissão: {
-               "id": %d,
-               "email" : %s,
-               "senha": %s,
-               "fkPermissao": %d,
-               "fkEmpresa": %d,
-            }    
-        """.formatted(this.id, this.email, senha, this.fkPermissao, this.fkEmpresa);
+        Id: %d,
+        Email" : %s,
+        Senha": %s,
+        Id da Permissao": %d,
+        Id da Empresa": %d,
+        """.formatted(
+        this.id,
+        this.email,
+        senha,
+        this.fkPermissao,
+        this.fkEmpresa);
 
     }
 }

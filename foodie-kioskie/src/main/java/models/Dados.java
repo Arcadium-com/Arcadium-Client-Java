@@ -2,7 +2,6 @@ package models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Dados {
     private LocalDateTime dtHora;
@@ -85,17 +84,19 @@ public class Dados {
     public String toString() {
         DateTimeFormatter formatadorDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
         return String.format("""
+            ID do Totem: %d
             Data do Registro: %s
             Uso do Disco: %.2f%%
             Uso da Memória RAM: %.2f%%
             Uso da CPU: %.2f%%
-            ID do Totem: %d
+            Quantidade de USBs Conectados: %d
             """,
+            this.fkTotem,
             formatadorDataHora.format(this.dtHora),
             this.valorDisco,
             this.valorMemoriaRAM,
             this.valorCPU,
-            this.fkTotem
+            this.USB
         );
 
         // Quantidade de USBs Conectados: %d

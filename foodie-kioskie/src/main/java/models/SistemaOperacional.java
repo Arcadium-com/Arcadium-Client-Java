@@ -22,6 +22,10 @@ public class SistemaOperacional {
         this.totens.add(t);
     }
 
+    public void removeTotem(Totem t){
+        this.totens.remove(t);
+    }
+
     public Integer getId() {
         return id;
     }

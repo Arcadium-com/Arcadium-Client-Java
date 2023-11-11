@@ -1,51 +1,46 @@
 package models;
-import org.springframework.cglib.core.Local;
-import oshi.hardware.UsbDevice;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Totem {
     private Integer id;
+    private Integer fkEmpresa;
     private Integer fkIndicadores;
     private Integer fkStatus;
-    private Integer fkEmpresa;
     private Integer fkSistemaOperacional;
     private LocalDate dtInstalacao;
     private Integer RAMTotal;
     private Double CPUTotal;
     private Integer discoTotal;
     private String enderecoMAC;
-    private Integer USB;
-    private List<UsbDevice> listaUsbs;
     private List<Dados> dadosTotem;
 
-    public Totem(){}
+    public Totem(){
+        this.dadosTotem = new ArrayList<>();
+    }
 
-    public Totem(Integer id, Integer fkIndicadores, Integer fkStatus, Integer fkEmpresa, Integer fkSistemaOperacional, LocalDate dtInstalacao, Integer RAMTotal, Double CPUTotal, Integer discoTotal, String enderecoMAC, Integer usb) {
+    public Totem(Integer id, Integer fkEmpresa, Integer fkIndicadores, Integer fkStatus, Integer fkSistemaOperacional, LocalDate dtInstalacao, Integer RAMTotal, Double CPUTotal, Integer discoTotal, String enderecoMAC) {
+        this.id = id;
+        this.fkEmpresa = fkEmpresa;
         this.fkIndicadores = fkIndicadores;
         this.fkStatus = fkStatus;
-        this.fkEmpresa = fkEmpresa;
         this.fkSistemaOperacional = fkSistemaOperacional;
         this.dtInstalacao = dtInstalacao;
         this.RAMTotal = RAMTotal;
         this.CPUTotal = CPUTotal;
         this.discoTotal = discoTotal;
         this.enderecoMAC = enderecoMAC;
-        this.USB = usb;
-        this.listaUsbs = new ArrayList<UsbDevice>();
         this.dadosTotem = new ArrayList<>();
     }
 
-    public void adicionarUsb(UsbDevice u){
-        this.listaUsbs.add(u);
+    public void adicionaDados(Dados d){
+        this.dadosTotem.add(d);
     }
 
-    public void adicionarDados(Dados d){
-        this.dadosTotem.add(d);
+    public void deletaDados(Dados d){
+        this.dadosTotem.remove(d);
     }
 
     public Integer getId() {
@@ -127,10 +122,6 @@ public class Totem {
         this.enderecoMAC = enderecoMAC;
     }
 
-    public List<UsbDevice> getListaUsbs() {
-        return listaUsbs;
-    }
-
     public List<Dados> getDadosTotem() {
         return dadosTotem;
     }
@@ -146,17 +137,16 @@ public class Totem {
            Total do Disco (HD/SSD): %d
            Endereço MAC: %s
         """.formatted(
-                this.id,
-                // this.fkIndicadores,
-                // this.fkStatus,
-                //this.fkEmpresa,
-                //this.fkSistemaOperacional,
-                formatadorDataHora.format(this.dtInstalacao),
-                this.RAMTotal,
-                this.CPUTotal,
-                this.discoTotal,
-                this.enderecoMAC
-                //this.USB
+            this.id,
+            // this.fkIndicadores,
+            // this.fkStatus,
+            //this.fkEmpresa,
+//            this.fkSistemaOperacional,
+            formatadorDataHora.format(this.dtInstalacao),
+            this.RAMTotal,
+            this.CPUTotal,
+            this.discoTotal,
+            this.enderecoMAC
         );
     }
 }

@@ -1,10 +1,6 @@
-import dao.DadosDao;
-import dao.TotemDao;
-import dao.UsuarioDao;
-import models.Dados;
 import models.Totem;
 import models.Usuario;
-import java.util.List;
+import service.FoodieKioskie;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,20 +24,18 @@ public class Principal {
                     System.out.print("Senha: ");
                     String senha = leitorComLinha.nextLine();
 
-                    UsuarioDao usuarioDao = new UsuarioDao();
-                    Usuario usuario = usuarioDao.entrarNaConta(email, senha);
+                    FoodieKioskie foodieKioskie = new FoodieKioskie();
+                    Usuario usuario = foodieKioskie.entrarNaConta(email, senha);
 
                     if(usuario != null){
-                        TotemDao totemDao = new TotemDao();
-                        Totem totemCadastrado = totemDao.inserirTotemNoBanco(usuario.getFkEmpresa());
-                        DadosDao dadosDao = new DadosDao();
+                        foodieKioskie.inserirTotemNoBanco(usuario.getFkEmpresa());
+                        Totem totemCadastrado = foodieKioskie.obterTotemPorFkEmpresa(usuario.getFkEmpresa());
                         Timer timer = new Timer();
 
                         timer.scheduleAtFixedRate(new TimerTask() {
                             @Override
                             public void run() {
-                                dadosDao.inserirDadosNoBanco(totemCadastrado.getId());
-
+                                foodieKioskie.inserirDadosObtidosDoTotemNoBanco(totemCadastrado);
                             }
                         }, 0, 10000);
 
@@ -53,25 +47,18 @@ public class Principal {
 
                             switch (opcaoDigitada) {
                                 case 1 -> {
-                                    List<Totem> listaTotens = totemDao.getTodosOsTotensPorEmpresa(usuario.getFkEmpresa());
-
-                                    for (Totem t : listaTotens) {
-                                        System.out.println(t);
-                                    }
+                                    foodieKioskie.exibirTodosOsTotens(usuario.getFkEmpresa());
                                 }
                                 case 2 -> {
                                     System.out.println(totemCadastrado);
                                 }
 
                                 case 3 -> {
-                                    List<Dados> dadosTotem = dadosDao.getUltimos5RegistrosDoTotemPorId(totemCadastrado.getId());
-
-                                    for (Dados d : dadosTotem){
-                                        System.out.println(d);
-                                    }
+                                    foodieKioskie.exibirUltimos5RegistrosDoTotem(totemCadastrado.getId());
 
                                 }
                                 case 0 -> {
+                                    timer.cancel();
                                     System.out.println("Até mais :)");
                                     System.exit(0);
                                 }

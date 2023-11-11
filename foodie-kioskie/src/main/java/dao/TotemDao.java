@@ -14,10 +14,18 @@ import java.text.NumberFormat;
 import java.util.List;
 
 public class TotemDao {
-    Looca looca = new Looca();
-    Sistema sistema = new Sistema();
-    Conexao conexao = new Conexao();
-    JdbcTemplate mysql = conexao.getConexaoDoBanco();
+    private Looca looca;
+    private Sistema sistema;
+    private Conexao conexao;
+    private JdbcTemplate sqlServer;
+    private JdbcTemplate mysql;
+    public TotemDao(){
+        this.looca = new Looca();
+        this.sistema = new Sistema();
+        this.conexao = new Conexao();
+        this.sqlServer = conexao.getConexaoDoBancoSqlServer();
+        this.mysql = conexao.getConexaoDoBancoMySql();
+    }
 
     public Totem inserirTotemNoBanco(Integer fkEmpresa){
         SistemaOperacionalDao soDao = new SistemaOperacionalDao();
@@ -31,9 +39,9 @@ public class TotemDao {
 
         String enderecoMAC = looca.getRede().getGrupoDeInterfaces().getInterfaces().get(0).getEnderecoMac();
 
-        var totemComEnderecoMAC = this.getTotemPorEnderecoMac(enderecoMAC);
+        Boolean existTotemPorEnderecoMac = this. existTotemPorEnderecoMac(enderecoMAC);
 
-        if(totemComEnderecoMAC == null){
+        if(!existTotemPorEnderecoMac){
             Disco disco = looca.getGrupoDeDiscos().getDiscos().get(0);
             Memoria memoria = looca.getMemoria();
 
@@ -42,6 +50,18 @@ public class TotemDao {
             Integer totalRAM = Math.round(memoria.getTotal() / 1000000000);
 
             Double totalCPU = looca.getProcessador().getNumeroCpusLogicas().doubleValue();
+
+            sqlServer.update("""
+            INSERT INTO totem(fksistemaoperacional, fkEmpresa, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, enderecoMAC)
+            VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?, ?)
+            """,
+                fkSO,
+                fkEmpresa,
+                totalRAM,
+                totalCPU,
+                totalDisco,
+                enderecoMAC
+            );
 
             mysql.update("""
             INSERT INTO totem(fksistemaoperacional, fkEmpresa, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, enderecoMAC)
@@ -58,41 +78,44 @@ public class TotemDao {
             return this.getUltimoTotemAdicionadoPorFkEmpresa(fkEmpresa);
         }
 
-        return totemComEnderecoMAC;
+        return this.getTotemPorEnderecoMac(enderecoMAC);
+    }
+
+    public Boolean existTotemPorEnderecoMac(String enderecoMAC){
+        var retornoQuery = sqlServer.queryForObject("""
+                SELECT CAST(
+                    CASE
+                        WHEN (SELECT 1 WHERE EXISTS(SELECT * FROM totem WHERE enderecoMAC = ?)) = 1 THEN 1
+                        ELSE 0
+                        end as BIT
+                    );
+        """, new Object[] {enderecoMAC}, Integer.class);
+        return retornoQuery == 1 ? true : false;
     }
 
     public Totem getTotemPorEnderecoMac(String enderecoMAC){
-        List<Totem> retornoQuery = mysql.query("SELECT * FROM totem WHERE enderecoMAC = ?", new BeanPropertyRowMapper<>(Totem.class), enderecoMAC);
+        return sqlServer.queryForObject("SELECT * FROM totem WHERE enderecoMAC = ?", new BeanPropertyRowMapper<>(Totem.class), enderecoMAC);
+    }
 
-        if(retornoQuery.size() == 0){
-            return null;
-        }
-
-        return retornoQuery.get(0);
+    public Totem getTotemPorId(Integer idTotem){
+        return sqlServer.queryForObject("SELECT * FROM totem WHERE id = ?", new BeanPropertyRowMapper<>(Totem.class), idTotem
+        );
+    }
+    public Totem getTotemPorFkEmpresa(Integer fkEmpresa){
+        return sqlServer.queryForObject("SELECT * FROM totem WHERE fkEmpresa = ?", new BeanPropertyRowMapper<>(Totem.class), fkEmpresa
+        );
     }
 
     public Totem getUltimoTotemAdicionadoPorFkEmpresa(Integer fkEmpresa){
-        return mysql.query("SELECT * FROM totem WHERE fkEmpresa = ? LIMIT 1", new BeanPropertyRowMapper<>(Totem.class), fkEmpresa).get(0);
+        return sqlServer.queryForObject("SELECT TOP 1 * FROM totem WHERE fkEmpresa = ?", new BeanPropertyRowMapper<>(Totem.class), fkEmpresa);
     }
 
     public List<Totem> getTodosOsTotensPorEmpresa(Integer fkEmpresa){
-        return mysql.query("SELECT * FROM totem WHERE fkEmpresa = ?", new BeanPropertyRowMapper<>(Totem.class), fkEmpresa);
+        return sqlServer.query("SELECT * FROM totem WHERE fkEmpresa = ?", new BeanPropertyRowMapper<>(Totem.class), fkEmpresa);
     }
 
-//    public List<Dados> getDadosDeTodosOsTotensPorEmpresa(Integer fkEmpresa){
-//        List<Totem> listaTotens = this.getTodosOsTotensPorEmpresa(fkEmpresa);
-//        List<Dados> listaDadosTotens = new ArrayList<>();
-//
-//        if(listaTotens.size() == 0){
-//            return null;
-//        }
-//
-//        for (Totem t : listaTotens) {
-//            Dados retornoSql = mysql.queryForObject("SELECT * FROM dados WHERE fktotem = ?", new BeanPropertyRowMapper<>(Dados.class), t.getId());
-//            listaDadosTotens.add(retornoSql);
-//        }
-//
-//        return listaDadosTotens;
-//    }
+    public List<Totem> getTodosOsTotensPorFkIndicador(Integer fkIndicadores){
+        return sqlServer.query("SELECT * FROM totem WHERE fkindicadores = ?", new BeanPropertyRowMapper<>(Totem.class), fkIndicadores);
+    }
 
 }
