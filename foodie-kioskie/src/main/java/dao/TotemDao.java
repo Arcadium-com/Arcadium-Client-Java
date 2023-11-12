@@ -78,7 +78,7 @@ public class TotemDao {
             return this.getUltimoTotemAdicionadoPorFkEmpresa(fkEmpresa);
         }
 
-        return this.getTotemPorEnderecoMac(enderecoMAC);
+        return this.getTotemPorEnderecoMac();
     }
 
     public Boolean existTotemPorEnderecoMac(String enderecoMAC){
@@ -93,7 +93,9 @@ public class TotemDao {
         return retornoQuery == 1 ? true : false;
     }
 
-    public Totem getTotemPorEnderecoMac(String enderecoMAC){
+    public Totem getTotemPorEnderecoMac(){
+        String enderecoMAC = looca.getRede().getGrupoDeInterfaces().getInterfaces().get(0).getEnderecoMac();
+
         return sqlServer.queryForObject("SELECT * FROM totem WHERE enderecoMAC = ?", new BeanPropertyRowMapper<>(Totem.class), enderecoMAC);
     }
 

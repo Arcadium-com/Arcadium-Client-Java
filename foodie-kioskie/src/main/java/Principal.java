@@ -29,7 +29,7 @@ public class Principal {
 
                     if(usuario != null){
                         foodieKioskie.inserirTotemNoBanco(usuario.getFkEmpresa());
-                        Totem totemCadastrado = foodieKioskie.obterTotemPorFkEmpresa(usuario.getFkEmpresa());
+                        Totem totemCadastrado = foodieKioskie.obterTotemPorEnderecoMac();
                         Timer timer = new Timer();
 
                         timer.scheduleAtFixedRate(new TimerTask() {

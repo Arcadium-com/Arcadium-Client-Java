@@ -70,6 +70,10 @@ public class FoodieKioskie {
         }
     }
 
+    public Totem obterTotemPorEnderecoMac(){
+        return totemDao.getTotemPorEnderecoMac();
+    }
+
     public Totem obterTotemPorFkEmpresa(Integer fkEmpresa){
         if(fkEmpresa > 0 ){
             Totem totem = totemDao.getTotemPorFkEmpresa(fkEmpresa);

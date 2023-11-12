@@ -44,8 +44,8 @@ public class DadosDao {
 
         mysql.update("""
             INSERT INTO dados(dt_hora, valorDisco, valorMemoriaRAM, valorCPU, USB,  fktotem)
-            VALUES (CURRENT_TIMESTAMP(), ?, ?, ?, ?, ?)
-            """, valorDisco, valorRAM, valorCPU, totalUsbsConectados, totem.getId());
+            VALUES (CURRENT_TIMESTAMP(), ?, ?, ?, ?, 1)
+            """, valorDisco, valorRAM, valorCPU, totalUsbsConectados);
 
         totem.adicionaDados(this.getUltimoDadoAdicionado());
     }
