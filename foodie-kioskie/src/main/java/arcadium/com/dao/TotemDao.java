@@ -64,9 +64,8 @@ public class TotemDao {
 
             mysql.update("""
             INSERT INTO totem(fksistemaoperacional, fkEmpresa, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, enderecoMAC)
-            VALUES (?, ?, CURRENT_TIMESTAMP(), ?, ?, ?, ?)
+            VALUES (1, ?, CURRENT_TIMESTAMP(), ?, ?, ?, ?)
             """,
-                fkSO,
                 fkEmpresa,
                 totalRAM,
                 totalCPU,

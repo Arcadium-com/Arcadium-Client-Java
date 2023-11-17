@@ -16,8 +16,9 @@ public class Conexao {
             dataSourceSqlServer.setUrl("jdbc:sqlserver://ec2-54-88-22-216.compute-1.amazonaws.com:1433;databaseName=Arcadium;encrypt=true;trustServerCertificate=true");
             dataSourceSqlServer.setUsername("sa");
             dataSourceSqlServer.setPassword("#arcadium123");
+
             conexaoDoBancoSqlServer = new JdbcTemplate(dataSourceSqlServer);
-        } catch(Exception e ){
+        } catch(Exception e) {
             throw new Error(e);
         }
 
