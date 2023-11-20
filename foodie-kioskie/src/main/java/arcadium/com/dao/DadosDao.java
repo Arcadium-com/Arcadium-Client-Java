@@ -1,5 +1,6 @@
 package arcadium.com.dao;
 
+import arcadium.com.models.Log;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.memoria.Memoria;
@@ -16,6 +17,7 @@ public class DadosDao {
     private Conexao conexao;
     private JdbcTemplate mysql;
     private JdbcTemplate sqlServer;
+    Integer logInsercao = 0;
 
     public DadosDao(){
         this.looca = new Looca();
@@ -48,6 +50,13 @@ public class DadosDao {
             """, valorDisco, valorRAM, valorCPU, totalUsbsConectados);
 
         totem.adicionaDados(this.getUltimoDadoAdicionado());
+        if (logInsercao==0) {
+
+            Log logger = new Log();
+            logger.log("A aplicação está inserindo dados no banco.");
+            logInsercao++;
+
+        }
     }
 
     public Dados getUltimoDadoAdicionado(){

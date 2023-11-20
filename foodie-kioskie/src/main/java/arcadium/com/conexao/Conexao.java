@@ -1,5 +1,6 @@
 package arcadium.com.conexao;
 
+import arcadium.com.models.Log;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -10,6 +11,7 @@ public class Conexao {
     public Conexao() {
         BasicDataSource dataSourceMySql = new BasicDataSource();
         BasicDataSource dataSourceSqlServer = new BasicDataSource();
+        Log logger = new Log();
 
         try{
             dataSourceSqlServer.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -19,6 +21,7 @@ public class Conexao {
 
             conexaoDoBancoSqlServer = new JdbcTemplate(dataSourceSqlServer);
         } catch(Exception e) {
+            logger.log("Erro de conexão SqlServer:" + e );
             throw new Error(e);
         }
 
@@ -30,6 +33,7 @@ public class Conexao {
 
             conexaoDoBancoMySql = new JdbcTemplate(dataSourceMySql);
         } catch (Exception e){
+            logger.log("Erro de conexão MySql:" + e );
             throw new Error(e);
         }
 
