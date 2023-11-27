@@ -1,0 +1,223 @@
+[2023-11-25 17:08:02] Erro na conexão do Banco de Dados, verifique se o serviço esta ativo
+[2023-11-25 17:08:45] A aplicação está inserindo dados no banco.
+[2023-11-25 17:23:07] Últimos 5 registros:
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:22:59
+Uso do Disco: 4,98%
+Uso da Memória RAM: 100,14%
+Uso da CPU: 17,42%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:22:49
+Uso do Disco: 4,98%
+Uso da Memória RAM: 100,71%
+Uso da CPU: 93,92%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:22:39
+Uso do Disco: 4,98%
+Uso da Memória RAM: 102,35%
+Uso da CPU: 100,00%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:22:29
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,85%
+Uso da CPU: 22,48%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:22:19
+Uso do Disco: 4,98%
+Uso da Memória RAM: 96,60%
+Uso da CPU: 63,23%
+Quantidade de USBs Conectados: 2
+
+[2023-11-25 17:23:46] A aplicação está inserindo dados no banco.
+[2023-11-25 17:25:30] Últimos 5 registros:
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:25:20
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,48%
+Uso da CPU: 46,33%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:25:10
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,39%
+Uso da CPU: 61,04%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:25:00
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,64%
+Uso da CPU: 61,63%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:24:51
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,70%
+Uso da CPU: 9,36%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:24:40
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,53%
+Uso da CPU: 22,56%
+Quantidade de USBs Conectados: 2
+
+[2023-11-25 17:26:08] A aplicação está inserindo dados no banco.
+[2023-11-25 17:27:11] Últimos 5 registros:
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:03
+Uso do Disco: 4,99%
+Uso da Memória RAM: 99,43%
+Uso da CPU: 15,58%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:26:52
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,83%
+Uso da CPU: 57,71%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:26:42
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,91%
+Uso da CPU: 25,33%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:26:32
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,93%
+Uso da CPU: 90,56%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:26:22
+Uso do Disco: 4,98%
+Uso da Memória RAM: 98,58%
+Uso da CPU: 61,32%
+Quantidade de USBs Conectados: 2
+
+[2023-11-25 17:27:44] A aplicação está inserindo dados no banco.
+[2023-11-25 17:28:21] Últimos 5 registros:
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:28:17
+Uso do Disco: 4,99%
+Uso da Memória RAM: 99,13%
+Uso da CPU: 41,77%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:28:07
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,80%
+Uso da CPU: 52,54%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:57
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,91%
+Uso da CPU: 49,63%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:47
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,96%
+Uso da CPU: 42,15%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:43
+Uso do Disco: 4,99%
+Uso da Memória RAM: 99,04%
+Uso da CPU: 42,15%
+Quantidade de USBs Conectados: 2
+
+[2023-11-25 17:32:08] A aplicação está inserindo dados no banco.
+[2023-11-25 17:35:54] Últimos 5 registros:
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:32:07
+Uso do Disco: 4,99%
+Uso da Memória RAM: 103,21%
+Uso da CPU: 7,42%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:28:17
+Uso do Disco: 4,99%
+Uso da Memória RAM: 99,13%
+Uso da CPU: 41,77%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:28:07
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,80%
+Uso da CPU: 52,54%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:57
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,91%
+Uso da CPU: 49,63%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:47
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,96%
+Uso da CPU: 42,15%
+Quantidade de USBs Conectados: 2
+
+[2023-11-25 17:36:21] A aplicação está inserindo dados no banco.
+[2023-11-25 17:41:02] Últimos 5 registros:
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:36:20
+Uso do Disco: 4,99%
+Uso da Memória RAM: 101,44%
+Uso da CPU: 11,02%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:32:07
+Uso do Disco: 4,99%
+Uso da Memória RAM: 103,21%
+Uso da CPU: 7,42%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:28:17
+Uso do Disco: 4,99%
+Uso da Memória RAM: 99,13%
+Uso da CPU: 41,77%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:28:07
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,80%
+Uso da CPU: 52,54%
+Quantidade de USBs Conectados: 2
+
+ID do Totem: 16
+Data do Registro: 25/11/2023 05:27:57
+Uso do Disco: 4,99%
+Uso da Memória RAM: 98,91%
+Uso da CPU: 49,63%
+Quantidade de USBs Conectados: 2
+

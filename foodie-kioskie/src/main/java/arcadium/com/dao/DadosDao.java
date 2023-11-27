@@ -1,5 +1,6 @@
 package arcadium.com.dao;
 
+import arcadium.com.jira.IntegracaoJira;
 import arcadium.com.models.Indicador;
 import arcadium.com.models.Log;
 import com.github.britooo.looca.api.core.Looca;
@@ -12,6 +13,7 @@ import arcadium.com.models.Totem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
+import arcadium.com.slack.IntegracaoSlack;
 
 public class DadosDao {
     private Looca looca;
@@ -58,6 +60,7 @@ public class DadosDao {
             logInsercao++;
 
         }
+        sendMessages(totem);
     }
 
     public Dados getUltimoDadoAdicionado(){
@@ -73,22 +76,14 @@ public class DadosDao {
     }
 
     public void sendMessages(Totem totem) {
+        Boolean chamadoCritico = false;
         List<Dados> dados = totem.getDadosTotem();
 
-        Indicador discoIndicador = mysql.queryForObject(
-                "SELECT (select LimiteDisco from Indicadores WHERE id = ?) FROM totem",
-                new BeanPropertyRowMapper<>(Indicador.class), totem.getFkIndicadores()
-        );
+        Indicador discoIndicador = mysql.queryForObject("SELECT (select LimiteDisco from Indicadores WHERE id = ?) FROM totem", new BeanPropertyRowMapper<>(Indicador.class), totem.getFkIndicadores());
 
-        Indicador cpuIndicador = mysql.queryForObject(
-                "SELECT (select LimiteCPU from Indicadores WHERE id = ?) FROM totem",
-                new BeanPropertyRowMapper<>(Indicador.class), totem.getFkIndicadores()
-        );
+        Indicador cpuIndicador = mysql.queryForObject("SELECT (select LimiteCPU from Indicadores WHERE id = ?) FROM totem", new BeanPropertyRowMapper<>(Indicador.class), totem.getFkIndicadores());
 
-        Indicador ramIndicador = mysql.queryForObject(
-                "SELECT (select LimiteRAM from Indicadores WHERE id = ?) FROM totem",
-                new BeanPropertyRowMapper<>(Indicador.class), totem.getFkIndicadores()
-        );
+        Indicador ramIndicador = mysql.queryForObject("SELECT (select LimiteRAM from Indicadores WHERE id = ?) FROM totem", new BeanPropertyRowMapper<>(Indicador.class), totem.getFkIndicadores());
 
         Double limiteDisco = discoIndicador.getLimiteDisco();
         Double limiteCPU = cpuIndicador.getLimiteCpu();
@@ -97,13 +92,24 @@ public class DadosDao {
         String mensagem = "Alerta: ";
         if(dados.get(0).getValorDisco() >= limiteDisco){
             mensagem += "Crítico DISCO";
+            chamadoCritico = true;
         } else if (dados.get(0).getValorCPU() >= limiteCPU){
             mensagem += "Crítico CPU";
-        } else if (dados.get(0).getValorMemoriaRAM() >= limiteRAM)
+            chamadoCritico = true;
+        } else if (dados.get(0).getValorMemoriaRAM() >= limiteRAM){
             mensagem += "Crítico RAM";
+            chamadoCritico = true;
         }
-
-        IntegracaoSlack slack = new IntegracaoSlack();
-        slack.sendMessage(mensagem);
+        if(chamadoCritico){
+            System.out.println("Chamado critico!!!");
+            System.out.printf("VALOR DISCO: %.2f || LIMITE DISCO: %.2f || %s", dados.get(0).getValorDisco(), limiteDisco, dados.get(0).getValorDisco() >= limiteDisco);
+            System.out.printf("VALOR CPU: %.2f || LIMITE CPU: %.2f || %s", dados.get(0).getValorCPU(), limiteCPU, dados.get(0).getValorCPU() >= limiteCPU);
+            System.out.printf("VALOR RAM: %.2f || LIMITE RAM: %.2f || %s", dados.get(0).getValorMemoriaRAM(), limiteRAM, dados.get(0).getValorMemoriaRAM() >= limiteRAM);
+            IntegracaoJira.criarChamado(totem, dados.get(0).getValorDisco(), dados.get(0).getValorCPU(), dados.get(0).getValorMemoriaRAM());
+        }else{
+            System.out.println("Chamado não critico!!");
+        }
+        //IntegracaoSlack slack = new IntegracaoSlack();
+        //slack.sendMessage(mensagem);
     }
 }

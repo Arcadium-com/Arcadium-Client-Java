@@ -1,4 +1,4 @@
-package arcadium.com.Slack;
+package arcadium.com.slack;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;

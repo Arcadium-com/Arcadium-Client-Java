@@ -51,6 +51,7 @@ public class FoodieKioskie {
     }
 
     public void inserirDadosObtidosDoTotemNoBanco(Totem totem){
+        System.out.println("Inserindo dados no banco!!");
         dadosDao.inserirDadosNoBanco(totem);
     }
 
