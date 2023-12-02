@@ -17,7 +17,11 @@ public class StatusTotemDao {
     }
 
     public StatusTotem getStatusTotemByName(String nome){
-        return sqlServer.queryForObject("SELECT * FROM statusTotem WHERE statusTotem = ?", new BeanPropertyRowMapper<>(StatusTotem.class), nome.toLowerCase());
+        return sqlServer.queryForObject("SELECT * FROM statusTotem WHERE statusTotem = ?", new BeanPropertyRowMapper<>(StatusTotem.class), nome);
+    }
+
+    public StatusTotem getStatusTotemById(Integer id){
+        return sqlServer.queryForObject("SELECT * FROM statusTotem WHERE id = ?", new BeanPropertyRowMapper<>(StatusTotem.class), id);
     }
 
 

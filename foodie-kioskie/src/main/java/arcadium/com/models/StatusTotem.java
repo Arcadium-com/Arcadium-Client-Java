@@ -36,7 +36,7 @@ public class StatusTotem {
     public String toString(){
         return """
         Id: %d
-        Status do Totem %s
+        Status: %s
         """.formatted(
         this.id,
         this.status

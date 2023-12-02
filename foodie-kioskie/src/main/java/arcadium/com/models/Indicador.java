@@ -5,29 +5,23 @@ import java.util.List;
 
 public class Indicador {
     private Integer id;
+    private Integer fkEmpresa;
     private Double limiteCpu;
     private Double limiteRam;
     private Double limiteDisco;
-    private List<Totem> totens;
+    private Integer indicadorUsb;
 
     public Indicador(){
-        this.totens = new ArrayList<>();
+
     }
 
-    public Indicador(Integer id, Double limiteCpu, Double limiteRam, Double limiteDisco) {
+    public Indicador(Integer id, Integer fkEmpresa, Double limiteCpu, Double limiteRam, Double limiteDisco, Integer indicadorUsb) {
         this.id = id;
+        this.fkEmpresa = fkEmpresa;
         this.limiteCpu = limiteCpu;
         this.limiteRam = limiteRam;
         this.limiteDisco = limiteDisco;
-        this.totens = new ArrayList<>();
-    }
-
-    public void adicionaTotem(Totem t){
-        this.totens.add(t);
-    }
-
-    public void removeTotem(Totem t){
-        this.totens.remove(t);
+        this.indicadorUsb = indicadorUsb;
     }
 
     public Integer getId() {
@@ -36,6 +30,14 @@ public class Indicador {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(Integer fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
     }
 
     public Double getLimiteCpu() {
@@ -62,18 +64,30 @@ public class Indicador {
         this.limiteDisco = limiteDisco;
     }
 
+    public Integer getIndicadorUsb() {
+        return indicadorUsb;
+    }
+
+    public void setIndicadorUsb(Integer indicadorUsb) {
+        this.indicadorUsb = indicadorUsb;
+    }
+
     @Override
     public String toString() {
         return """
         Id: %d
+        Fk da Empresa: %d
         Limite da CPU: %.2f
         Limite da RAM: %.2f
         Limite do Disco: %.2f
+        Indicador do USB: %d
         """.formatted(
             this.id,
+            this.fkEmpresa,
             this.limiteCpu,
             this.limiteRam,
-            this.limiteDisco
+            this.limiteDisco,
+            this.indicadorUsb
         );
     }
 }

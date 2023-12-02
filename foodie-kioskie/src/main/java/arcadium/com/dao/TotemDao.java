@@ -5,11 +5,10 @@ import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import arcadium.com.conexao.Conexao;
-//import arcadium.com.models.Dados;
 import arcadium.com.models.Totem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-//import java.util.ArrayList;
+import java.net.InetAddress;
 import java.util.List;
 
 public class TotemDao {
@@ -36,11 +35,17 @@ public class TotemDao {
         soDao.inserirSistemaOperacionalNoBanco(sistema);
         Integer fkSO = soDao.getSistemaOperacionalPorDistribuicaoPorVersionamento(distribuicaoSO, versaoSO).get(0).getId();
 
-        String enderecoMAC = looca.getRede().getGrupoDeInterfaces().getInterfaces().get(0).getEnderecoMac();
+        String hostname = "";
 
-        Boolean existTotemPorEnderecoMac = this. existTotemPorEnderecoMac(enderecoMAC);
+        try {
+            hostname = InetAddress.getLocalHost().getHostName();
+        } catch (Exception e) {
+            throw new Error(e);
+        }
 
-        if(!existTotemPorEnderecoMac){
+        Boolean existTotemPorHostname = this.existTotemPorHostname();
+
+        if(!existTotemPorHostname){
             Disco disco = looca.getGrupoDeDiscos().getDiscos().get(0);
             Memoria memoria = looca.getMemoria();
 
@@ -51,50 +56,67 @@ public class TotemDao {
             Double totalCPU = looca.getProcessador().getNumeroCpusLogicas().doubleValue();
 
             sqlServer.update("""
-            INSERT INTO totem(fksistemaoperacional, fkEmpresa, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, enderecoMAC)
-            VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?, ?)
+            INSERT INTO totem(fksistemaoperacional, fkEmpresa, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, hostname, fkstatus)
+            VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?, ?, 1)
             """,
-                fkSO,
-                fkEmpresa,
-                totalRAM,
-                totalCPU,
-                totalDisco,
-                enderecoMAC
+                    fkSO,
+                    fkEmpresa,
+                    totalRAM,
+                    totalCPU,
+                    totalDisco,
+                    hostname
             );
 
             mysql.update("""
-            INSERT INTO totem(fksistemaoperacional, fkEmpresa, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, enderecoMAC)
-            VALUES (1, ?, CURRENT_TIMESTAMP(), ?, ?, ?, ?)
+            INSERT INTO totem(id, dtInstalacao, RAMtotal, CPUtotal, DISCOTotal, hostname)
+            VALUES (1, CURRENT_TIMESTAMP(), ?, ?, ?, ?)
             """,
-                fkEmpresa,
-                totalRAM,
-                totalCPU,
-                totalDisco,
-                enderecoMAC
+                    totalRAM,
+                    totalCPU,
+                    totalDisco,
+                    hostname
             );
 
             return this.getUltimoTotemAdicionadoPorFkEmpresa(fkEmpresa);
         }
 
-        return this.getTotemPorEnderecoMac();
+        return this.getTotemPorHostname();
     }
 
-    public Boolean existTotemPorEnderecoMac(String enderecoMAC){
+    public Boolean existTotemPorHostname(){
+        String hostname;
+
+        try {
+            hostname = InetAddress.getLocalHost().getHostName();
+        } catch (Exception e) {
+            throw new Error(e);
+        }
+
         var retornoQuery = sqlServer.queryForObject("""
                 SELECT CAST(
                     CASE
-                        WHEN (SELECT 1 WHERE EXISTS(SELECT * FROM totem WHERE enderecoMAC = ?)) = 1 THEN 1
+                        WHEN (SELECT 1 WHERE EXISTS(SELECT * FROM totem WHERE hostname = ?)) = 1 THEN 1
                         ELSE 0
                         end as BIT
                     );
-        """, new Object[] {enderecoMAC}, Integer.class);
+        """, new Object[] {hostname}, Integer.class);
         return retornoQuery == 1 ? true : false;
     }
 
-    public Totem getTotemPorEnderecoMac(){
-        String enderecoMAC = looca.getRede().getGrupoDeInterfaces().getInterfaces().get(0).getEnderecoMac();
+    public Totem getTotemPorHostname(){
+        String hostname = "";
 
-        return sqlServer.queryForObject("SELECT * FROM totem WHERE enderecoMAC = ?", new BeanPropertyRowMapper<>(Totem.class), enderecoMAC);
+        try {
+            hostname = InetAddress.getLocalHost().getHostName();
+        } catch (Exception e) {
+           throw new Error(e);
+        }
+
+        if(!existTotemPorHostname()){
+            return null;
+        }
+
+        return sqlServer.queryForObject("SELECT * FROM totem WHERE hostname = ?", new BeanPropertyRowMapper<>(Totem.class), hostname);
     }
 
     public Totem getTotemPorId(Integer idTotem){

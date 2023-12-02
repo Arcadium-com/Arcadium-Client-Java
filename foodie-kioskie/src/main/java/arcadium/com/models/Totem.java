@@ -6,33 +6,37 @@ import java.util.List;
 
 public class Totem {
     private Integer id;
-    private Integer fkEmpresa;
-    private Integer fkIndicadores;
     private Integer fkStatus;
+    private Integer fkEmpresa;
     private Integer fkSistemaOperacional;
     private LocalDate dtInstalacao;
     private Integer RAMTotal;
     private Double CPUTotal;
     private Integer discoTotal;
-    private String enderecoMAC;
+    private String hostname;
     private List<Dados> dadosTotem;
+    private List<Alerta> alertas;
+    private List<AlertaSlack> alertasSlack;
 
     public Totem(){
         this.dadosTotem = new ArrayList<>();
+        this.alertas = new ArrayList<>();
+        this.alertasSlack = new ArrayList<>();
     }
 
-    public Totem(Integer id, Integer fkEmpresa, Integer fkIndicadores, Integer fkStatus, Integer fkSistemaOperacional, LocalDate dtInstalacao, Integer RAMTotal, Double CPUTotal, Integer discoTotal, String enderecoMAC) {
+    public Totem(Integer id, Integer fkEmpresa, Integer fkStatus, Integer fkSistemaOperacional, LocalDate dtInstalacao, Integer RAMTotal, Double CPUTotal, Integer discoTotal, String hostname) {
         this.id = id;
         this.fkEmpresa = fkEmpresa;
-        this.fkIndicadores = fkIndicadores;
         this.fkStatus = fkStatus;
         this.fkSistemaOperacional = fkSistemaOperacional;
         this.dtInstalacao = dtInstalacao;
         this.RAMTotal = RAMTotal;
         this.CPUTotal = CPUTotal;
         this.discoTotal = discoTotal;
-        this.enderecoMAC = enderecoMAC;
+        this.hostname = hostname;
         this.dadosTotem = new ArrayList<>();
+        this.alertas = new ArrayList<>();
+        this.alertasSlack = new ArrayList<>();
     }
 
     public void adicionaDados(Dados d){
@@ -43,19 +47,19 @@ public class Totem {
         this.dadosTotem.remove(d);
     }
 
+    public void adicionaAlerta(Alerta a){
+        this.alertas.add(a);
+    }
+
+    public void adicionaAlertaSlack(AlertaSlack aS){
+        this.alertasSlack.add(aS);
+    }
+
     public Integer getId() {
         return id;
     }
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getFkIndicadores() {
-        return fkIndicadores;
-    }
-
-    public void setFkIndicadores(Integer fkIndicadores) {
-        this.fkIndicadores = fkIndicadores;
     }
 
     public Integer getFkStatus() {
@@ -114,16 +118,23 @@ public class Totem {
         this.discoTotal = discoTotal;
     }
 
-    public String getEnderecoMAC() {
-        return enderecoMAC;
+    public String getHostname() {
+        return hostname;
     }
 
-    public void setEnderecoMAC(String enderecoMAC) {
-        this.enderecoMAC = enderecoMAC;
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
     }
 
     public List<Dados> getDadosTotem() {
         return dadosTotem;
+    }
+    public List<Alerta> getAlertas() {
+        return alertas;
+    }
+
+    public List<AlertaSlack> getAlertasSlack() {
+        return alertasSlack;
     }
 
     @Override
@@ -135,18 +146,14 @@ public class Totem {
            Total da Memória RAM: %d
            Total de Núcleos CPU: %.0f
            Total do Disco (HD/SSD): %d
-           Endereço MAC: %s
+           Hostname: %s
         """.formatted(
             this.id,
-            // this.fkIndicadores,
-            // this.fkStatus,
-            //this.fkEmpresa,
-//            this.fkSistemaOperacional,
             formatadorDataHora.format(this.dtInstalacao),
             this.RAMTotal,
             this.CPUTotal,
             this.discoTotal,
-            this.enderecoMAC
+            this.hostname
         );
     }
 }

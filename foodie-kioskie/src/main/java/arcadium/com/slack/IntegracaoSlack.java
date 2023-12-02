@@ -1,5 +1,6 @@
 package arcadium.com.slack;
 
+import arcadium.com.models.Log;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -21,6 +22,8 @@ public class IntegracaoSlack {
     }
 
     public void sendMessage(String message){
+        Log logger = new Log();
+
         try{
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                     .channel("#arcadium")
@@ -30,8 +33,12 @@ public class IntegracaoSlack {
             ChatPostMessageResponse response = methods.chatPostMessage(request);
         } catch (SlackApiException requestFailure) {
             requestFailure.fillInStackTrace();
+            logger.log("Houve um erro ao tentar enviar mensagem no slack.");
+            logger.log("Exceção => " + requestFailure);
         } catch (IOException connectivityIssue) {
             connectivityIssue.fillInStackTrace();
+            logger.log("Houve um erro ao tentar enviar mensagem no slack.");
+            logger.log("Exceção => " + connectivityIssue);
         }
     }
 

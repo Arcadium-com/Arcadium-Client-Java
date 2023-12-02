@@ -1,1 +1,0 @@
-[2023-11-25 16:56:22] Erro na conexão do Banco de Dados, verifique se o serviço esta ativo
