@@ -239,7 +239,7 @@ public class DadosDao {
 
         if (chamadoCritico) {
             List<Alerta> alertas = totem.getAlertas();
-            Boolean dtEhMaior = false;
+            Boolean dtEhMaior = true;
             Boolean horaAtualMaiorHoraConclusao = true;
             Boolean dtEhIgual = false;
 
